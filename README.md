@@ -6,9 +6,15 @@ Still for Halo focuses on readable typography, a simple article list, restrained
 
 ## Preview
 
-![Still for Halo homepage preview](./screenshots/home.webp)
+### Home
 
-> Preview content is illustrative only. The public theme does not bundle demo posts, demo cover images, or personal branding.
+![Still for Halo home preview](./screenshots/home.png)
+
+### Post
+
+![Still for Halo post preview](./screenshots/post.png)
+
+> These screenshots are from a real Halo instance running Still for Halo. The posts, cover images, site title, and other content shown in the screenshots are not bundled with the theme.
 
 ## Features
 
