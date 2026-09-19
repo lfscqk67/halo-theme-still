@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="920" viewBox="0 0 1600 920">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980">
   <defs>
     <linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
       <stop offset="0" stop-color="#f5f7fa"/>
@@ -21,51 +21,51 @@
     </filter>
     <style>
       .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
-      .title { font-size: 30px; font-weight: 700; fill: #171a1f; }
+      .site-title { font-size: 30px; font-weight: 700; fill: #171a1f; }
       .subtitle { font-size: 16px; fill: #8a94a3; }
       .nav { font-size: 16px; font-weight: 600; fill: #6f7886; }
       .meta { font-size: 14px; fill: #96a0ad; }
-      .posttitle { font-size: 27px; font-weight: 700; fill: #171a1f; }
-      .posttitle2 { font-size: 21px; font-weight: 700; fill: #171a1f; }
+      .post-title-lg { font-size: 27px; font-weight: 700; fill: #171a1f; }
+      .post-title { font-size: 21px; font-weight: 700; fill: #171a1f; }
       .excerpt { font-size: 16px; fill: #75808f; }
       .more { font-size: 15px; font-weight: 600; fill: #4f7fbf; }
+      .footer { font-size: 13px; fill: #9aa3af; }
     </style>
   </defs>
 
-  <rect width="1600" height="920" fill="url(#bg)"/>
+  <rect width="1600" height="980" fill="url(#bg)"/>
   <g filter="url(#shadow)">
-    <rect x="42" y="34" rx="18" width="1516" height="850" fill="#ffffff"/>
+    <rect x="42" y="34" rx="18" width="1516" height="900" fill="#fff"/>
   </g>
 
   <!-- browser bar -->
-  <rect x="42" y="34" rx="18" width="1516" height="70" fill="#f7f9fb"/>
+  <path d="M60 34h1480a18 18 0 0 1 18 18v52H42V52a18 18 0 0 1 18-18z" fill="#f7f9fb"/>
   <circle cx="78" cy="69" r="8" fill="#ff605c"/>
   <circle cx="104" cy="69" r="8" fill="#ffbd44"/>
   <circle cx="130" cy="69" r="8" fill="#00ca4e"/>
-  <rect x="180" y="51" width="1080" height="36" rx="18" fill="#ffffff" stroke="#e3e8ee"/>
+  <rect x="180" y="51" width="1080" height="36" rx="18" fill="#fff" stroke="#e3e8ee"/>
   <circle cx="210" cy="69" r="6" fill="none" stroke="#87919f" stroke-width="2"/>
   <path d="M214 73l8 8" stroke="#87919f" stroke-width="2" stroke-linecap="round"/>
   <text x="242" y="75" class="sans subtitle">https://example.com</text>
 
   <!-- site header -->
-  <g transform="translate(168 138)">
-    <text x="0" y="34" class="sans title">My Notes</text>
-    <text x="0" y="62" class="sans subtitle">Thoughts, code, and everyday things.</text>
+  <g transform="translate(168 142)">
+    <text x="0" y="30" class="sans site-title">My Notes</text>
+    <text x="0" y="58" class="sans subtitle">Thoughts, code, and everyday things.</text>
 
-    <text x="920" y="34" class="sans nav" fill="#171a1f">Home</text>
-    <rect x="920" y="48" width="43" height="2" fill="#4f7fbf"/>
-    <text x="1000" y="34" class="sans nav">Archive</text>
-    <text x="1095" y="34" class="sans nav">About</text>
+    <text x="918" y="30" class="sans nav" fill="#171a1f">Home</text>
+    <rect x="918" y="44" width="43" height="2" fill="#4f7fbf"/>
+    <text x="1002" y="30" class="sans nav">Archive</text>
+    <text x="1099" y="30" class="sans nav">About</text>
 
-    <circle cx="1198" cy="27" r="9" fill="none" stroke="#171a1f" stroke-width="2.5"/>
-    <path d="M1204 34l8 8" stroke="#171a1f" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M1260 17a14 14 0 1 0 13 19 12 12 0 0 1-13-19z" fill="#171a1f"/>
+    <circle cx="1202" cy="23" r="9" fill="none" stroke="#171a1f" stroke-width="2.5"/>
+    <path d="M1208 30l8 8" stroke="#171a1f" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M1262 13a14 14 0 1 0 13 19 12 12 0 0 1-13-19z" fill="#171a1f"/>
   </g>
 
   <!-- first post -->
-  <g transform="translate(168 255)">
+  <g transform="translate(168 258)">
     <rect x="0" y="0" width="445" height="260" rx="9" fill="url(#cover1)"/>
-    <!-- mini PC illustration -->
     <rect x="92" y="46" width="260" height="160" rx="14" fill="#eef1f4"/>
     <text x="118" y="82" class="sans" font-size="28" font-weight="600" fill="#65717f">Homelab</text>
     <text x="118" y="112" class="sans" font-size="14" fill="#8a94a3">Small Home.</text>
@@ -77,47 +77,48 @@
     <rect x="284" y="160" width="18" height="8" rx="2" fill="#111418"/>
     <rect x="310" y="160" width="18" height="8" rx="2" fill="#111418"/>
 
-    <text x="490" y="28" class="sans meta">2026-09-19  ·  Homelab</text>
-    <rect x="490" y="0" width="52" height="24" rx="12" fill="#eef5ff"/>
-    <text x="503" y="17" class="sans" font-size="12" fill="#7fa1c6">Pinned</text>
-    <text x="490" y="79" class="sans posttitle">Building a Small Homelab with Proxmox</text>
+    <rect x="490" y="4" width="52" height="24" rx="12" fill="#eef5ff"/>
+    <text x="503" y="21" class="sans" font-size="12" fill="#7fa1c6">Pinned</text>
+    <text x="558" y="21" class="sans meta">2026-09-19  ·  Homelab</text>
+
+    <text x="490" y="79" class="sans post-title-lg">Building a Small Homelab with Proxmox</text>
     <text x="490" y="119" class="sans excerpt">A practical look at a compact home server setup,</text>
     <text x="490" y="147" class="sans excerpt">virtualization, networking, and self-hosted services.</text>
     <text x="490" y="198" class="sans more">Continue Reading  →</text>
   </g>
 
-  <line x1="168" y1="548" x2="1432" y2="548" stroke="#e9edf2"/>
+  <line x1="168" y1="550" x2="1432" y2="550" stroke="#e9edf2"/>
 
   <!-- second post -->
-  <g transform="translate(168 578)">
+  <g transform="translate(168 582)">
     <rect x="0" y="0" width="260" height="140" rx="8" fill="url(#cover2)"/>
-    <rect x="92" y="25" width="82" height="92" rx="10" fill="#ffffff" stroke="#d7dde4"/>
+    <rect x="92" y="25" width="82" height="92" rx="10" fill="#fff" stroke="#d7dde4"/>
     <path d="M174 49c28 0 28 44 0 44" fill="none" stroke="#d7dde4" stroke-width="8"/>
     <text x="107" y="59" class="sans" font-size="12" font-weight="700" fill="#30363d">Good</text>
     <text x="107" y="76" class="sans" font-size="12" font-weight="700" fill="#30363d">Ideas</text>
     <text x="107" y="93" class="sans" font-size="12" font-weight="700" fill="#30363d">Better Days</text>
 
     <text x="302" y="22" class="sans meta">2026-08-30  ·  Notes</text>
-    <text x="302" y="61" class="sans posttitle2">Notes on Self-Hosting</text>
+    <text x="302" y="61" class="sans post-title">Notes on Self-Hosting</text>
     <text x="302" y="92" class="sans excerpt">Small lessons from running services at home.</text>
     <text x="302" y="126" class="sans more">Continue Reading  →</text>
   </g>
 
-  <line x1="168" y1="746" x2="1432" y2="746" stroke="#e9edf2"/>
+  <line x1="168" y1="752" x2="1432" y2="752" stroke="#e9edf2"/>
 
   <!-- third post -->
-  <g transform="translate(168 776)">
-    <rect x="0" y="0" width="260" height="80" rx="8" fill="url(#cover3)"/>
-    <path d="M0 70 L58 31 L105 61 L154 24 L208 60 L260 35 L260 80 L0 80 Z" fill="#9fb6c9" opacity=".75"/>
-    <path d="M0 78 L65 53 L121 74 L181 47 L260 67 L260 80 L0 80 Z" fill="#7f9bb2" opacity=".75"/>
+  <g transform="translate(168 785)">
+    <rect x="0" y="0" width="260" height="112" rx="8" fill="url(#cover3)"/>
+    <path d="M0 92 L58 53 L105 83 L154 46 L208 82 L260 57 L260 112 L0 112 Z" fill="#9fb6c9" opacity=".75"/>
+    <path d="M0 106 L65 81 L121 102 L181 75 L260 95 L260 112 L0 112 Z" fill="#7f9bb2" opacity=".75"/>
 
-    <text x="302" y="18" class="sans meta">2026-08-12  ·  Journal</text>
-    <text x="302" y="54" class="sans posttitle2">Hello, Still</text>
-    <text x="760" y="54" class="sans excerpt">A quiet, minimal Halo theme for writing and reading.</text>
+    <text x="302" y="20" class="sans meta">2026-08-12  ·  Journal</text>
+    <text x="302" y="58" class="sans post-title">Hello, Still</text>
+    <text x="302" y="88" class="sans excerpt">A quiet, minimal Halo theme for writing and reading.</text>
   </g>
 
   <!-- footer -->
-  <line x1="168" y1="858" x2="1432" y2="858" stroke="#e9edf2"/>
-  <text x="168" y="880" class="sans" font-size="13" fill="#9aa3af">© 2026 My Notes · Powered by Halo · Still</text>
-  <text x="1240" y="880" class="sans" font-size="13" fill="#9aa3af">GitHub   RSS</text>
+  <line x1="168" y1="912" x2="1432" y2="912" stroke="#e9edf2"/>
+  <text x="168" y="932" class="sans footer">© 2026 My Notes · Powered by Halo · Still</text>
+  <text x="1280" y="932" class="sans footer">GitHub   RSS</text>
 </svg>
