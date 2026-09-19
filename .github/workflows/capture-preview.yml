@@ -1,0 +1,49 @@
+name: Capture preview screenshots
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/capture-preview.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Capture real theme pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p screenshots
+
+          CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          echo "Using Chrome: $CHROME"
+
+          "$CHROME"             --headless=new             --no-sandbox             --disable-gpu             --hide-scrollbars             --force-device-scale-factor=1             --window-size=2048,1131             --virtual-time-budget=5000             --screenshot=screenshots/home.png             "https://blog.qinkun.top/"
+
+          "$CHROME"             --headless=new             --no-sandbox             --disable-gpu             --hide-scrollbars             --force-device-scale-factor=1             --window-size=1391,2048             --virtual-time-budget=5000             --screenshot=screenshots/post.png             "https://blog.qinkun.top/archives/homelab-network-en"
+
+          file screenshots/home.png screenshots/post.png
+          ls -lh screenshots/home.png screenshots/post.png
+
+      - name: Commit screenshots
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add screenshots/home.png screenshots/post.png
+
+          if git diff --cached --quiet; then
+            echo "Screenshots are already up to date."
+            exit 0
+          fi
+
+          git commit -m "docs: refresh real theme preview screenshots"
+          git push
