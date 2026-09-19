@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{layout :: html(head = ~{::head}, content = ~{::content})}"
+>
+<th:block th:fragment="head">
+  <title th:text="|#{page.tags} - ${site.title}|">标签</title>
+</th:block>
+
+<th:block th:fragment="content">
+  <h1 class="page-heading" th:text="#{page.tags}">标签</h1>
+  <div class="taxonomy-grid">
+    <a
+      class="taxonomy-item"
+      th:each="tag : ${tags}"
+      th:href="@{${tag.status.permalink}}"
+      th:text="|${tag.spec.displayName} · ${tag.postCount}|"
+    >标签</a>
+  </div>
+</th:block>
+</html>

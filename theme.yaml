@@ -1,0 +1,19 @@
+apiVersion: theme.halo.run/v1alpha1
+kind: Theme
+metadata:
+  name: theme-still
+spec:
+  displayName: Still for Halo
+  author:
+    name: "Still Theme Contributors"
+  description: "Still for Halo is a quiet, minimal Halo theme focused on typography, reading experience, and a simple article list."
+  homepage: "https://github.com/lfscqk67/halo-theme-still#readme"
+  repo: "https://github.com/lfscqk67/halo-theme-still"
+  issues: "https://github.com/lfscqk67/halo-theme-still/issues"
+  settingName: "theme-still-setting"
+  configMapName: "theme-still-configMap"
+  version: "1.0.0"
+  requires: ">=2.24.0"
+  license:
+    - name: "MIT"
+      url: "https://opensource.org/license/mit"

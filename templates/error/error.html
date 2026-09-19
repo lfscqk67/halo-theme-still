@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{layout :: html(head = ~{::head}, content = ~{::content})}"
+>
+<th:block th:fragment="head">
+  <title th:text="|${error.status} - ${site.title}|">Error</title>
+</th:block>
+
+<th:block th:fragment="content">
+  <section class="error-page">
+    <h1 class="error-code" th:text="${error.status}">404</h1>
+    <p class="error-message" th:text="${#strings.defaultString(error.title, 'Page not found')}">Page not found</p>
+    <p>
+      <a class="read-more" th:href="@{/}">← Home</a>
+    </p>
+  </section>
+</th:block>
+</html>

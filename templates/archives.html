@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{layout :: html(head = ~{::head}, content = ~{::content})}"
+>
+<th:block th:fragment="head">
+  <title th:text="|#{page.archives} - ${site.title}|">归档</title>
+</th:block>
+
+<th:block th:fragment="content">
+  <h1 class="page-heading" th:text="#{page.archives}">归档</h1>
+
+  <th:block th:each="archive : ${archives.items}">
+    <h2 class="archive-year" th:text="${archive.year}">2026</h2>
+
+    <th:block th:each="month : ${archive.months}">
+      <div class="archive-month" th:text="${month.month}">09</div>
+
+      <div
+        class="archive-item"
+        th:each="post : ${month.posts}"
+      >
+        <time
+          class="archive-date"
+          th:datetime="${post.spec.publishTime}"
+          th:text="${#temporals.format(post.spec.publishTime, 'MM-dd')}"
+        >09-19</time>
+        <a
+          class="archive-link"
+          th:href="@{${post.status.permalink}}"
+          th:text="${post.spec.title}"
+        >文章标题</a>
+      </div>
+    </th:block>
+  </th:block>
+
+  <nav class="pagination" th:if="${archives.hasPrevious() || archives.hasNext()}">
+    <a th:if="${archives.hasPrevious()}" th:href="@{${archives.prevUrl}}">← <span th:text="#{pagination.previous}">上一页</span></a>
+    <span th:unless="${archives.hasPrevious()}"></span>
+    <a th:if="${archives.hasNext()}" th:href="@{${archives.nextUrl}}"><span th:text="#{pagination.next}">下一页</span> →</a>
+  </nav>
+</th:block>
+</html>

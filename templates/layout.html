@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:lang="${#locale.toLanguageTag}"
+  th:fragment="html(head, content)"
+  class="color-scheme-auto"
+>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title th:if="${head == null}" th:text="${site.title}">Site title</title>
+
+  <link rel="stylesheet" th:href="@{/assets/css/style.css?v={version}(version=${theme.spec.version})}" />
+  <script defer th:src="@{/assets/js/main.js?v={version}(version=${theme.spec.version})}"></script>
+
+  <style th:inline="css">
+    :root {
+      --accent: /*[[${theme.config.appearance?.accent ?: '#4f7fbf'}]]*/ #4f7fbf;
+    }
+  </style>
+
+  <th:block th:if="${head != null}">
+    <th:block th:replace="${head}" />
+  </th:block>
+</head>
+
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="identity" th:href="@{/}">
+        <img
+          th:if="${theme.config.profile?.avatar != null and !#strings.isEmpty(theme.config.profile.avatar)}"
+          class="avatar"
+          th:src="${theme.config.profile.avatar}"
+          alt=""
+        />
+        <div class="identity-copy">
+          <h1 class="site-title" th:text="${site.title}">Site Title</h1>
+          <p
+            class="site-subtitle"
+            th:if="${(theme.config.profile?.intro != null and !#strings.isEmpty(theme.config.profile.intro)) or (site.subtitle != null and !#strings.isEmpty(site.subtitle))}"
+            th:text="${theme.config.profile?.intro != null and !#strings.isEmpty(theme.config.profile.intro) ? theme.config.profile.intro : site.subtitle}"
+          >Site subtitle</p>
+        </div>
+      </a>
+
+      <div class="header-right" th:with="primaryMenu=${menuFinder.getPrimary()}">
+        <nav class="site-nav" th:if="${primaryMenu != null and not #lists.isEmpty(primaryMenu.menuItems)}">
+          <th:block th:each="menuItem,stat : ${primaryMenu.menuItems}">
+            <a
+              th:href="@{${menuItem.status.href}}"
+              th:text="${menuItem.status.displayName}"
+              th:classappend="${stat.index == 0} ? 'is-home'"
+              th:target="${menuItem.spec.target?.value}"
+            >菜单</a>
+          </th:block>
+        </nav>
+
+        <nav class="site-nav" th:if="${primaryMenu == null or #lists.isEmpty(primaryMenu.menuItems)}">
+          <a class="is-home" th:href="@{/}" th:text="#{nav.home}">Home</a>
+          <a th:href="@{${site.url + site.routes.archivesUri}}" th:text="#{nav.archives}">Archives</a>
+        </nav>
+
+        <a
+          th:if="${pluginFinder.available('PluginSearchWidget')}"
+          class="icon-btn"
+          href="javascript:SearchWidget.open()"
+          aria-label="搜索"
+        >
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-3.5-3.5"></path>
+          </svg>
+        </a>
+
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="切换深色模式">
+          <span data-theme-icon>☾</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="main">
+      <th:block th:replace="${content}" />
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <span>© </span>
+        <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2026</span>
+        <span> </span>
+        <span th:text="${site.title}">Site Title</span>
+        <span
+          th:if="${theme.config.profile?.footer_text != null and !#strings.isEmpty(theme.config.profile.footer_text)}"
+          th:text="| · ${theme.config.profile.footer_text}|"
+        ></span>
+      </div>
+      <div class="footer-icons">
+        <a th:if="${pluginFinder.available('PluginSearchWidget')}" href="javascript:SearchWidget.open()" title="搜索">⌕</a>
+        <a href="/rss.xml" title="RSS">◔</a>
+      </div>
+      <halo:footer />
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<body>
+  <th:block th:fragment="tree(categories)">
+    <th:block th:each="category : ${categories}">
+      <a
+        class="taxonomy-item"
+        th:href="@{${category.status.permalink}}"
+        th:text="|${category.spec.displayName} · ${category.postCount}|"
+      >分类</a>
+      <th:block th:if="${not #lists.isEmpty(category.children)}">
+        <th:block th:replace="~{modules/category-tree :: tree(categories=${category.children})}"></th:block>
+      </th:block>
+    </th:block>
+  </th:block>
+</body>
+</html>

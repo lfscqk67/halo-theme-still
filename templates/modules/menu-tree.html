@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<body>
+  <th:block th:fragment="tree(menuItems)">
+    <th:block th:each="menuItem : ${menuItems}">
+      <a
+        th:href="@{${menuItem.status.href}}"
+        th:text="${menuItem.status.displayName}"
+        th:target="${menuItem.spec.target?.value}"
+      >菜单</a>
+    </th:block>
+  </th:block>
+</body>
+</html>

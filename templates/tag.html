@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{layout :: html(head = ~{::head}, content = ~{::content})}"
+>
+<th:block th:fragment="head">
+  <title th:text="|${tag.spec.displayName} - ${site.title}|">标签</title>
+</th:block>
+
+<th:block th:fragment="content">
+  <h1 class="page-heading" th:text="${tag.spec.displayName}">标签</h1>
+
+  <section class="post-list" th:if="${not #lists.isEmpty(posts.items)}">
+    <th:block th:each="post,stat : ${posts.items}">
+      <article th:replace="~{modules/post-card :: card(post=${post},index=${stat.index},home=${false})}"></article>
+    </th:block>
+  </section>
+
+  <nav class="pagination" th:if="${posts.hasPrevious() || posts.hasNext()}">
+    <a th:if="${posts.hasPrevious()}" th:href="@{${posts.prevUrl}}">← <span th:text="#{pagination.previous}">上一页</span></a>
+    <span th:unless="${posts.hasPrevious()}"></span>
+    <a th:if="${posts.hasNext()}" th:href="@{${posts.nextUrl}}"><span th:text="#{pagination.next}">下一页</span> →</a>
+  </nav>
+</th:block>
+</html>

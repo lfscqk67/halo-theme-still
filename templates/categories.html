@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{layout :: html(head = ~{::head}, content = ~{::content})}"
+>
+<th:block th:fragment="head">
+  <title th:text="|#{page.categories} - ${site.title}|">分类</title>
+</th:block>
+
+<th:block th:fragment="content">
+  <h1 class="page-heading" th:text="#{page.categories}">分类</h1>
+  <div class="taxonomy-grid">
+    <th:block th:replace="~{modules/category-tree :: tree(categories=${categories})}"></th:block>
+  </div>
+</th:block>
+</html>

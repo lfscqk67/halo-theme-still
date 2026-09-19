@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{layout :: html(head = ~{::head}, content = ~{::content})}"
+>
+<th:block th:fragment="head">
+  <title th:text="|${post.spec.title} - ${site.title}|">文章标题</title>
+</th:block>
+
+<th:block th:fragment="content">
+  <article class="article">
+    <header class="article-header">
+      <h1 class="article-title" th:text="${post.spec.title}">文章标题</h1>
+      <div class="article-meta">
+        <time
+          th:datetime="${post.spec.publishTime}"
+          th:text="${#temporals.format(post.spec.publishTime, 'yyyy-MM-dd')}"
+        >2026-09-19</time>
+
+        <a
+          th:each="category : ${post.categories}"
+          th:href="@{${category.status.permalink}}"
+          th:text="${category.spec.displayName}"
+        >分类</a>
+
+        <a
+          th:if="${post.owner != null}"
+          th:href="@{${post.owner.permalink}}"
+          th:text="${post.owner.displayName}"
+        >作者</a>
+      </div>
+    </header>
+
+    <img
+      class="article-cover"
+      th:if="${post.spec.cover != null and !#strings.isEmpty(post.spec.cover)}"
+      th:src="${post.spec.cover}"
+      th:alt="${post.spec.title}"
+    />
+
+    <div class="content" th:utext="${post.content.content}"></div>
+
+    <div class="tags" th:if="${not #lists.isEmpty(post.tags)}">
+      <a
+        class="tag"
+        th:each="tag : ${post.tags}"
+        th:href="@{${tag.status.permalink}}"
+        th:text="${tag.spec.displayName}"
+      >Tag</a>
+    </div>
+
+    <nav class="post-nav" th:with="cursor=${postFinder.cursor(post.metadata.name)}">
+      <a th:if="${cursor.hasPrevious()}" th:href="@{${cursor.previous.status.permalink}}">
+        <small th:text="#{post.previous}">上一篇</small><br />
+        <span th:text="${cursor.previous.spec.title}">上一篇标题</span>
+      </a>
+      <span th:unless="${cursor.hasPrevious()}"></span>
+
+      <a class="next" th:if="${cursor.hasNext()}" th:href="@{${cursor.next.status.permalink}}">
+        <small th:text="#{post.next}">下一篇</small><br />
+        <span th:text="${cursor.next.spec.title}">下一篇标题</span>
+      </a>
+    </nav>
+
+    <section class="comments" th:if="${haloCommentEnabled}">
+      <h2 th:text="#{comments.title}">评论</h2>
+      <halo:comment
+        group="content.halo.run"
+        kind="Post"
+        th:attr="name=${post.metadata.name}"
+      />
+    </section>
+  </article>
+</th:block>
+</html>

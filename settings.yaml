@@ -1,0 +1,42 @@
+apiVersion: v1alpha1
+kind: Setting
+metadata:
+  name: theme-still-setting
+spec:
+  forms:
+    - group: profile
+      label: 基本信息
+      formSchema:
+        - $formkit: attachment
+          name: avatar
+          label: 头像
+          width: 6rem
+          aspectRatio: 1/1
+          accepts:
+            - "image/png"
+            - "image/jpeg"
+            - "image/webp"
+          value: ""
+          help: "可选。留空时不显示头像。"
+        - $formkit: text
+          name: intro
+          label: 首页简介
+          value: ""
+          help: "可选。留空时使用 Halo 站点副标题。"
+        - $formkit: text
+          name: footer_text
+          label: 页脚附加文字
+          value: ""
+          help: "可选。"
+
+    - group: appearance
+      label: 外观
+      formSchema:
+        - $formkit: color
+          name: accent
+          label: 强调色
+          value: "#4f7fbf"
+        - $formkit: switch
+          name: show_excerpt
+          label: 首页显示文章摘要
+          value: true

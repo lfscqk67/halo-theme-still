@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<body>
+  <article
+    th:fragment="card(post,index,home)"
+    th:with="hasCover=${post.spec.cover != null and !#strings.isEmpty(post.spec.cover)}"
+    class="post-card"
+    th:classappend="${!hasCover} ? ' no-cover'"
+  >
+    <a th:if="${hasCover}" th:href="@{${post.status.permalink}}">
+      <img class="post-cover" th:src="${post.spec.cover}" th:alt="${post.spec.title}" loading="lazy" />
+    </a>
+
+    <div class="post-copy">
+      <div class="post-meta">
+        <span th:if="${post.spec.pinned}" class="pinned">Pinned</span>
+        <time
+          th:datetime="${post.spec.publishTime}"
+          th:text="${#temporals.format(post.spec.publishTime, 'yyyy-MM-dd')}"
+        >2026-01-01</time>
+        <a
+          th:if="${not #lists.isEmpty(post.categories)}"
+          class="sep"
+          th:href="@{${post.categories[0].status.permalink}}"
+          th:text="${post.categories[0].spec.displayName}"
+        >Category</a>
+      </div>
+
+      <h2 class="post-title">
+        <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}">Post Title</a>
+      </h2>
+
+      <p
+        class="post-excerpt"
+        th:if="${(theme.config.appearance?.show_excerpt == null or theme.config.appearance.show_excerpt) and post.status.excerpt != null and !#strings.isEmpty(post.status.excerpt)}"
+        th:text="${post.status.excerpt}"
+      >Post excerpt</p>
+
+      <a class="read-more" th:href="@{${post.status.permalink}}">
+        <span th:text="#{read.more}">Continue Reading</span><span>→</span>
+      </a>
+    </div>
+  </article>
+</body>
+</html>
