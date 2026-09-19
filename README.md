@@ -4,6 +4,12 @@ A clean and minimal theme for Halo.
 
 Still for Halo focuses on readable typography, a simple article list, restrained visual styling, and a comfortable technical-blog reading experience.
 
+## Preview
+
+![Still for Halo homepage preview](./screenshots/home.svg)
+
+> Preview content is illustrative only. The public theme does not bundle demo posts, demo cover images, or personal branding.
+
 ## Features
 
 - Minimal responsive homepage
